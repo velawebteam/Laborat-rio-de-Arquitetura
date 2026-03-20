@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-black: #000000;
+  --color-brand-white: #ffffff;
+  --color-brand-light: #D9D8D6;
+  --color-brand-dark: #24272A;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  background-color: var(--color-brand-white);
+  color: var(--color-brand-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-brand-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-black);
+}
+
+/* Geometric dividers */
+.geo-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-brand-light);
+  position: relative;
+}
+.geo-divider::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-brand-black);
+  border-radius: 50%;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
