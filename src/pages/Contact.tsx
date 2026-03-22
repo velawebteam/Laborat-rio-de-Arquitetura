@@ -1,21 +1,52 @@
 import { motion } from 'motion/react';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
+const serviceOptions = [
+  { id: 'consultoria', label: 'Consultoria Arquitetónica' },
+  { id: 'projeto', label: 'Projeto de Execução' },
+  { id: 'licenciamento', label: 'Gestão e Licenciamento' },
+  { id: 'obra', label: 'Acompanhamento de Obra' },
+  { id: 'outro', label: 'Outro' }
+];
 
 export default function Contact() {
+  const [searchParams] = useSearchParams();
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    service: '',
+    services: searchParams.get('service') ? [searchParams.get('service')!] : [] as string[],
     message: ''
   });
+
+  useEffect(() => {
+    const serviceParam = searchParams.get('service');
+    if (serviceParam) {
+      setFormData(prev => ({ 
+        ...prev, 
+        services: prev.services.includes(serviceParam) ? prev.services : [...prev.services, serviceParam] 
+      }));
+    }
+  }, [searchParams]);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [responseMessage, setResponseMessage] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const toggleService = (serviceId: string) => {
+    if (status === 'submitting') return;
+    setFormData(prev => ({
+      ...prev,
+      services: prev.services.includes(serviceId)
+        ? prev.services.filter(id => id !== serviceId)
+        : [...prev.services, serviceId]
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,7 +59,7 @@ export default function Contact() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, service: formData.services.join(', ') }),
       });
       
       const data = await response.json();
@@ -36,7 +67,7 @@ export default function Contact() {
       if (response.ok) {
         setStatus('success');
         setResponseMessage(data.message || 'Mensagem enviada com sucesso!');
-        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', services: [], message: '' });
       } else {
         setStatus('error');
         setResponseMessage(data.message || 'Ocorreu um erro ao enviar a mensagem.');
@@ -57,7 +88,7 @@ export default function Contact() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="bg-brand-white text-brand-black pt-32 pb-24"
+        className="bg-brand-white text-brand-black pt-40 lg:pt-56 pb-24"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           {/* Header */}
@@ -83,20 +114,21 @@ export default function Contact() {
               className="lg:col-span-7 bg-brand-white p-8 md:p-16"
             >
               <form className="space-y-12" onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="name" className="block text-xs font-bold tracking-[0.2em] uppercase opacity-50 mb-4">Nome Completo</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-b-2 border-brand-black/20 py-4 text-xl font-medium focus:outline-none focus:border-brand-black transition-colors"
+                    placeholder="O seu nome"
+                    required
+                    disabled={status === 'submitting'}
+                  />
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                  <div>
-                    <label htmlFor="name" className="block text-xs font-bold tracking-[0.2em] uppercase opacity-50 mb-4">Nome Completo</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full bg-transparent border-b-2 border-brand-black/20 py-4 text-xl font-medium focus:outline-none focus:border-brand-black transition-colors"
-                      placeholder="O seu nome"
-                      required
-                      disabled={status === 'submitting'}
-                    />
-                  </div>
                   <div>
                     <label htmlFor="email" className="block text-xs font-bold tracking-[0.2em] uppercase opacity-50 mb-4">Email</label>
                     <input 
@@ -110,9 +142,6 @@ export default function Contact() {
                       disabled={status === 'submitting'}
                     />
                   </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div>
                     <label htmlFor="phone" className="block text-xs font-bold tracking-[0.2em] uppercase opacity-50 mb-4">Telefone</label>
                     <input 
@@ -125,23 +154,26 @@ export default function Contact() {
                       disabled={status === 'submitting'}
                     />
                   </div>
-                  <div>
-                    <label htmlFor="service" className="block text-xs font-bold tracking-[0.2em] uppercase opacity-50 mb-4">Serviço de Interesse</label>
-                    <select 
-                      id="service" 
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full bg-transparent border-b-2 border-brand-black/20 py-4 text-xl font-medium focus:outline-none focus:border-brand-black transition-colors appearance-none"
-                      required
-                      disabled={status === 'submitting'}
-                    >
-                      <option value="" disabled>Selecione um serviço</option>
-                      <option value="consultoria">Consultoria Arquitetónica</option>
-                      <option value="projeto">Projeto de Execução</option>
-                      <option value="licenciamento">Gestão e Licenciamento</option>
-                      <option value="obra">Acompanhamento de Obra</option>
-                      <option value="outro">Outro</option>
-                    </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold tracking-[0.2em] uppercase opacity-50 mb-4">Serviços de Interesse</label>
+                  <div className="flex flex-wrap gap-4">
+                    {serviceOptions.map(option => (
+                      <button
+                        key={option.id}
+                        type="button"
+                        onClick={() => toggleService(option.id)}
+                        disabled={status === 'submitting'}
+                        className={`border-2 px-6 py-3 text-xs md:text-sm font-bold tracking-[0.1em] uppercase transition-all duration-300 ${
+                          formData.services.includes(option.id) 
+                            ? 'bg-brand-black text-brand-white border-brand-black' 
+                            : 'bg-transparent text-brand-black border-brand-black/20 hover:border-brand-black'
+                        } ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
                   </div>
                 </div>
 

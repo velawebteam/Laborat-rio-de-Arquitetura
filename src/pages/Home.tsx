@@ -30,18 +30,22 @@ export default function Home() {
 
   const services = [
     {
+      id: 'consultoria',
       title: 'Consultoria',
       desc: 'Análise de viabilidade, estudos prévios e aconselhamento estratégico para investimentos imobiliários.'
     },
     {
+      id: 'projeto',
       title: 'Projeto',
       desc: 'Desenvolvimento detalhado de projetos de arquitetura e especialidades com precisão milimétrica.'
     },
     {
+      id: 'licenciamento',
       title: 'Gestão',
       desc: 'Navegamos a complexidade burocrática, garantindo a aprovação e conformidade legal do seu projeto.'
     },
     {
+      id: 'obra',
       title: 'Obra',
       desc: 'Acompanhamento rigoroso e fiscalização de obra para garantir a execução perfeita do projeto.'
     }
@@ -58,7 +62,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="bg-brand-white text-brand-black pt-20"
+        className="bg-brand-white text-brand-black pt-40 lg:pt-56"
       >
         {/* Brutalist Hero */}
         <section className="min-h-[90vh] flex flex-col justify-between px-6 md:px-12 pb-12 pt-12 md:pt-24 border-b border-brand-black">
@@ -124,11 +128,12 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <Link to="/projetos" className="text-xs font-bold uppercase tracking-[0.2em] bg-brand-white text-brand-black px-6 py-3 hover:bg-brand-light transition-colors">
-                Ver Todos [→]
-              </Link>
-            </div>
+          </div>
+          
+          <div className="px-6 md:px-12 py-6 border-b border-brand-white/20 flex justify-end">
+            <Link to="/projetos" className="text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-light transition-colors">
+              Ver Todos [→]
+            </Link>
           </div>
           
           <div className="flex flex-col">
@@ -164,25 +169,26 @@ export default function Home() {
         {/* Brutalist Services Grid */}
         <section className="bg-brand-light text-brand-black">
           <div className="px-6 md:px-12 pt-24 pb-12 md:pt-40 md:pb-16 border-b border-brand-black/10 text-center">
-            <h2 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase">Especialidades</h2>
+            <h2 className="text-[11vw] md:text-[9vw] lg:text-[8vw] leading-[0.85] font-bold tracking-tighter uppercase">Especialidades</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border-b border-brand-black/10">
             {services.map((s, i) => (
-              <div 
+              <Link 
+                to={`/servicos#${s.id}`}
                 key={i} 
-                className="bg-brand-light p-12 md:p-24 hover:bg-brand-black hover:text-brand-white transition-colors duration-500 group flex flex-col justify-between min-h-[400px]"
+                className="bg-brand-light p-8 md:p-12 lg:p-16 hover:bg-brand-black hover:text-brand-white transition-colors duration-500 group flex flex-col justify-between min-h-[350px] block"
               >
                 <span className="text-6xl md:text-8xl font-bold tracking-tighter opacity-20 group-hover:opacity-100 transition-opacity">
                   0{i + 1}
                 </span>
                 <div>
-                  <h3 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase mb-6">{s.title}</h3>
+                  <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase mb-6">{s.title}</h3>
                   <p className="text-lg md:text-xl opacity-80 font-medium leading-relaxed max-w-md">
                     {s.desc}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

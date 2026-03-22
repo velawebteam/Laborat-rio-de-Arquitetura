@@ -22,10 +22,14 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed top-0 w-full z-50 bg-brand-white border-b border-brand-black transition-all duration-300">
-        <div className="flex justify-between items-center h-20 px-6 md:px-12">
-          <Link to="/" className="text-3xl md:text-4xl font-bold tracking-tighter uppercase relative group z-50">
-            <span className="text-brand-black">Lab</span>
-            <span className="text-brand-dark">.Arq</span>
+        <div className="flex justify-between items-center h-28 md:h-36 lg:h-44 px-6 md:px-12">
+          <Link to="/" className="relative group z-50 flex items-center">
+            <img 
+              src="https://lh3.googleusercontent.com/d/1wvrMKPYZWg8vjUsx-daIaFR0Geoo8lGo" 
+              alt="Laboratório de Arquitetura Logo" 
+              className="h-20 md:h-28 lg:h-36 w-auto object-contain"
+              referrerPolicy="no-referrer"
+            />
           </Link>
 
           {/* Desktop Nav */}

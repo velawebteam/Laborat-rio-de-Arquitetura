@@ -1,9 +1,23 @@
 import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 
 export default function Services() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+    }
+  }, [location]);
   const services = [
     {
       id: 'consultoria',
@@ -65,7 +79,7 @@ export default function Services() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="bg-brand-white text-brand-black pt-32 pb-24"
+        className="bg-brand-white text-brand-black pt-40 lg:pt-56 pb-24"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           {/* Header */}
@@ -102,22 +116,23 @@ export default function Services() {
             {services.map((service, i) => (
               <motion.div
                 key={service.id}
+                id={service.id}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="grid grid-cols-1 md:grid-cols-12 gap-px bg-brand-black/20 border-t border-brand-black/20 last:border-b"
+                className="grid grid-cols-1 md:grid-cols-12 gap-px bg-brand-black/20 border-t border-brand-black/20 last:border-b scroll-mt-24"
               >
-                <div className="md:col-span-5 bg-brand-white p-8 md:p-16 flex flex-col justify-between">
-                  <div className="text-6xl md:text-8xl font-bold tracking-tighter opacity-20 mb-12">
+                <div className="md:col-span-6 lg:col-span-7 bg-brand-white p-6 md:p-10 lg:p-12 xl:p-14 flex flex-col justify-center">
+                  <div className="text-6xl md:text-8xl font-bold tracking-tighter opacity-20 mb-4 md:mb-6">
                     0{i + 1}
                   </div>
-                  <h3 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase mb-6">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter uppercase pr-2 sm:pr-4">
                     {service.title}
                   </h3>
                 </div>
                 
-                <div className="md:col-span-7 bg-brand-white p-8 md:p-16 flex flex-col justify-between">
+                <div className="md:col-span-6 lg:col-span-5 bg-brand-white p-6 md:p-10 lg:p-12 xl:p-14 flex flex-col justify-between">
                   <div>
                     <p className="text-xl md:text-2xl font-medium leading-relaxed mb-12">
                       {service.desc}
@@ -132,7 +147,7 @@ export default function Services() {
                     </div>
                   </div>
                   <Link 
-                    to="/contacto" 
+                    to={`/contacto?service=${service.id}`} 
                     className="inline-flex items-center text-sm font-bold tracking-[0.2em] uppercase text-brand-black hover:text-brand-light transition-colors"
                   >
                     Pedir Orçamento <ArrowRight size={16} className="ml-4" aria-hidden="true" />

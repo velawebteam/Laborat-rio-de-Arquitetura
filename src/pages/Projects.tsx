@@ -85,7 +85,7 @@ export default function Projects() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="bg-brand-white text-brand-black pt-32 pb-24"
+        className="bg-brand-white text-brand-black pt-40 lg:pt-56 pb-24"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           {/* Header */}

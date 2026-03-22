@@ -14,7 +14,7 @@ export default function About() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="bg-brand-white text-brand-black pt-32 pb-24"
+        className="bg-brand-white text-brand-black pt-40 lg:pt-56 pb-24"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           {/* Header */}
@@ -90,6 +90,75 @@ export default function About() {
                   A nossa equipa multidisciplinar gere todas as fases do processo, desde 
                   o estudo prévio até à conclusão da obra, garantindo que a ideia original 
                   não se perde na execução.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Stats / Milestones */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/20 border-b border-brand-black/20 mb-32">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-brand-white p-12 md:p-16 text-center flex flex-col justify-center items-center"
+            >
+              <span className="text-6xl md:text-8xl font-bold tracking-tighter mb-4">2009</span>
+              <span className="text-sm font-bold tracking-[0.2em] uppercase opacity-50">Fundação (Junho)</span>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-brand-white p-12 md:p-16 text-center flex flex-col justify-center items-center"
+            >
+              <span className="text-6xl md:text-8xl font-bold tracking-tighter mb-4">+100</span>
+              <span className="text-sm font-bold tracking-[0.2em] uppercase opacity-50">Projetos Realizados</span>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="bg-brand-white p-12 md:p-16 text-center flex flex-col justify-center items-center"
+            >
+              <span className="text-6xl md:text-8xl font-bold tracking-tighter mb-4">2003</span>
+              <span className="text-sm font-bold tracking-[0.2em] uppercase opacity-50">Início de Atividade</span>
+            </motion.div>
+          </div>
+
+          {/* Founder */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 mb-32 border-b border-brand-black pb-32">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="md:col-span-4 flex flex-col justify-start"
+            >
+               <h2 className="text-xs font-bold tracking-[0.2em] uppercase opacity-50 mb-8">Liderança</h2>
+               <h3 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase">O Fundador</h3>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="md:col-span-8"
+            >
+              <h4 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase mb-8">Arq. André Silva</h4>
+              <div className="space-y-8 text-xl opacity-80 font-medium leading-relaxed">
+                <p>
+                  Terminou a sua formação em arquitetura em 2003, tendo vindo a desempenhar a profissão de forma contínua, 
+                  rigorosa e apaixonada desde essa data.
+                </p>
+                <p>
+                  Com uma visão focada na integração entre a estética intemporal e a funcionalidade absoluta, 
+                  estabeleceu o Laboratório de Arquitetura em junho de 2009. Desde a sua fundação, tem liderado 
+                  o estúdio na conceção e execução de mais de uma centena de projetos que desafiam os limites 
+                  do espaço e da forma, mantendo sempre um compromisso inabalável com a excelência técnica.
                 </p>
               </div>
             </motion.div>
