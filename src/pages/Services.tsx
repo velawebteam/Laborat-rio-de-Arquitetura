@@ -72,8 +72,8 @@ export default function Services() {
   return (
     <>
       <Helmet>
-        <title>Serviços | Laboratório de Arquitetura</title>
-        <meta name="description" content="Serviços de arquitetura, consultoria, licenciamento e acompanhamento de obra. Soluções completas para o seu projeto." />
+        <title>Serviços | Laboratório de Arquitetura | Arq. André Silva</title>
+        <meta name="description" content="Serviços do Laboratório de Arquitetura: Consultoria Arquitetónica, Projeto de Execução, Gestão e Licenciamento, e Acompanhamento de Obra." />
       </Helmet>
       <motion.div
         initial={{ opacity: 0 }}

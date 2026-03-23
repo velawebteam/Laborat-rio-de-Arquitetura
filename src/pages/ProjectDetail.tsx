@@ -15,7 +15,7 @@ export default function ProjectDetail() {
   return (
     <>
       <Helmet>
-        <title>{project.title} | Laboratório de Arquitetura</title>
+        <title>{project.title} | Laboratório de Arquitetura | Arq. André Silva</title>
         <meta name="description" content={project.description} />
       </Helmet>
       <motion.div

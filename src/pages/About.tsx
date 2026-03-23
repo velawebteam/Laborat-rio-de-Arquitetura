@@ -7,8 +7,8 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>Sobre Nós | Laboratório de Arquitetura</title>
-        <meta name="description" content="Conheça a história, filosofia e valores do Laboratório de Arquitetura. Desenhamos espaços que transformam o modo como vivemos e trabalhamos." />
+        <title>Sobre Nós | Laboratório de Arquitetura | Arq. André Silva</title>
+        <meta name="description" content="Conheça a história e os valores do Laboratório de Arquitetura, estúdio fundado pelo Arq. André Silva. Mais de uma década de excelência em arquitetura." />
       </Helmet>
       <motion.div
         initial={{ opacity: 0 }}

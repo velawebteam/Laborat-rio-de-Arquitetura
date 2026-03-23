@@ -78,8 +78,8 @@ export default function Projects() {
   return (
     <>
       <Helmet>
-        <title>Projetos | Laboratório de Arquitetura</title>
-        <meta name="description" content="Explore o nosso portfólio de projetos de arquitetura. Habitação, espaços comerciais e culturais desenhados com precisão e propósito." />
+        <title>Projetos | Laboratório de Arquitetura | Arq. André Silva</title>
+        <meta name="description" content="Explore o portfólio do Laboratório de Arquitetura. Projetos de habitação, espaços comerciais e culturais desenhados com precisão e propósito." />
       </Helmet>
       <motion.div
         initial={{ opacity: 0 }}

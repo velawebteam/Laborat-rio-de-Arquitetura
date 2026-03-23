@@ -81,7 +81,7 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Contacto | Laboratório de Arquitetura</title>
+        <title>Contacto | Laboratório de Arquitetura | Arq. André Silva</title>
         <meta name="description" content="Entre em contacto com o Laboratório de Arquitetura. Estamos prontos para ouvir as suas ideias e transformá-las em realidade." />
       </Helmet>
       <motion.div

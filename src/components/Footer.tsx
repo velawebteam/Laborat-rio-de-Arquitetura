@@ -38,7 +38,7 @@ export default function Footer() {
       </div>
       
       <div className="px-6 md:px-12 py-8 border-t border-brand-white/20 flex flex-col md:flex-row justify-between items-center text-xs font-mono opacity-50 uppercase tracking-widest">
-        <p>&copy; {new Date().getFullYear()} Laboratório de Arquitetura.</p>
+        <p>&copy; {new Date().getFullYear()} Laboratório de Arquitetura | Arq. André Silva.</p>
         <div className="flex space-x-8 mt-4 md:mt-0">
           <Link to="#" className="hover:text-brand-white transition-colors">Privacidade</Link>
           <Link to="#" className="hover:text-brand-white transition-colors">Termos</Link>

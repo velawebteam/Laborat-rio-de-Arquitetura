@@ -54,8 +54,8 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Laboratório de Arquitetura | Estúdio de Design e Arquitetura</title>
-        <meta name="description" content="O Laboratório de Arquitetura é um estúdio focado em criar espaços que inspiram, funcionam e perduram. Especialistas em habitação, comercial e cultural." />
+        <title>Laboratório de Arquitetura | Arq. André Silva</title>
+        <meta name="description" content="O Laboratório de Arquitetura, liderado pelo Arq. André Silva, é um estúdio focado em criar espaços que inspiram, funcionam e perduram. Especialistas em consultoria, projeto e obra." />
       </Helmet>
       
       <motion.div
